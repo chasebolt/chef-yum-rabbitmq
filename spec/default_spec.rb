@@ -7,5 +7,9 @@ describe 'yum-rabbitmq::default' do
     it 'creates yum_repository[rabbitmq]' do
       expect(chef_run).to create_yum_repository('rabbitmq')
     end
+
+    it 'creates yum_repository[rabbitmq-erlang]' do
+      expect(chef_run).to create_yum_repository('rabbitmq-erlang')
+    end
   end
 end

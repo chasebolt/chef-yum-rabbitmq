@@ -14,11 +14,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-yum_repository 'rabbitmq' do
-  next unless node['yum']['rabbitmq']['managed']
-  node['yum']['rabbitmq'].each do |config, value|
-    next if config == 'managed'
-    send(config.to_sym, value) unless value.nil?
+%w(
+  rabbitmq
+  rabbitmq-erlang
+).each do |repo|
+  yum_repository repo do
+    next unless node['yum'][repo]['managed']
+    node['yum'][repo].each do |config, value|
+      next if config == 'managed'
+      send(config.to_sym, value) unless value.nil?
+    end
+    action :create
   end
-  action :create
 end

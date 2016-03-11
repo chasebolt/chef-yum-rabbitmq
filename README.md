@@ -19,6 +19,13 @@ default['yum']['rabbitmq']['baseurl'] = 'https://dl.bintray.com/rabbitmq/rabbitm
 default['yum']['rabbitmq']['gpgcheck'] = false
 default['yum']['rabbitmq']['enabled'] = true
 default['yum']['rabbitmq']['managed'] = true
+
+default['yum']['rabbitmq-erlang']['description'] = 'RabbitMQ Erlang Repository'
+default['yum']['rabbitmq-erlang']['baseurl'] = 'https://dl.bintray.com/rabbitmq/erlang'
+default['yum']['rabbitmq-erlang']['gpgcheck'] = false
+default['yum']['rabbitmq-erlang']['enabled'] = true
+default['yum']['rabbitmq-erlang']['managed'] = true
+default['yum']['rabbitmq-erlang']['includepkgs'] = "*.el#{platform_version.to_i}.*"
 ```
 
 ## Recipes
@@ -32,6 +39,14 @@ default['yum']['rabbitmq']['managed'] = true
     description 'RabbitMQ Repository'
     enabled true
     gpgcheck false
+  end
+
+  yum_repository 'rabbitmq-erlang' do
+    baseurl 'https://dl.bintray.com/rabbitmq/erlang'
+    description 'RabbitMQ Erlang Repository'
+    enabled true
+    gpgcheck false
+    includepkgs '*.el7.*'
   end
 ```
 
