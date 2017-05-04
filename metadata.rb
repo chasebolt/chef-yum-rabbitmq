@@ -8,8 +8,6 @@ version '0.1.1'
 source_url 'https://github.com/chasebolt/chef-yum-rabbitmq'
 issues_url 'https://github.com/chasebolt/chef-yum-rabbitmq/issues'
 
-depends 'yum', '~> 3.2'
-
 supports 'amazon'
 supports 'centos'
 supports 'fedora'
